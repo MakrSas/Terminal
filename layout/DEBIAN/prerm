@@ -1,0 +1,3 @@
+#!/bin/sh
+if [ -x /var/jb/usr/bin/uicache ]; then /var/jb/usr/bin/uicache -u /var/jb/Applications/Terminal.app >/dev/null 2>&1 || true; fi
+exit 0

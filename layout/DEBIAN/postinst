@@ -1,10 +1,6 @@
 #!/bin/sh
-
-APP="/var/jb/Applications/MakrTerminal.app"
-if [ -x /var/jb/usr/bin/uicache ]; then
-	/var/jb/usr/bin/uicache -p "$APP" >/dev/null 2>&1 || true
-elif command -v uicache >/dev/null 2>&1; then
-	uicache -p "$APP" >/dev/null 2>&1 || true
-fi
-
+# setuid для помощника: root-вкладки; запускается только приложением Terminal
+chown root:wheel /var/jb/Applications/Terminal.app/mtsh 2>/dev/null
+chmod 4755 /var/jb/Applications/Terminal.app/mtsh 2>/dev/null
+if [ -x /var/jb/usr/bin/uicache ]; then /var/jb/usr/bin/uicache -p /var/jb/Applications/Terminal.app >/dev/null 2>&1 || true; fi
 exit 0

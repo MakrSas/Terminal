@@ -1,6 +1,3 @@
-.theos/
+build/
 packages/
-*.deb
-*.dSYM/
-node_modules/
-DerivedData/
+.DS_Store

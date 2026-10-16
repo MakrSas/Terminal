@@ -1,0 +1,11 @@
+Package: com.makr.terminal
+Name: Terminal
+Version: 1.0
+Architecture: iphoneos-arm64
+Description: Fast native terminal with root tabs, themes, tabs and hardware keyboard shortcuts [vibe-coded]
+ ⚠️ Vibe-coded: written almost entirely by an AI assistant (Claude); not audited. Root tabs run a shell as the superuser. Use at your own risk.
+ ⚠️ Вайбкод: написано почти целиком ИИ-ассистентом (Claude), не аудировано. Вкладки root запускают оболочку от суперпользователя. На свой страх и риск.
+Maintainer: makr
+Author: makr
+Section: Terminal Support
+Depends: firmware (>= 15.0), zsh | bash

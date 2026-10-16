@@ -1,38 +1,30 @@
-# Makr Terminal
+# Terminal
 
-![Иконка Makr Terminal](Resources/AppIcon1024.png)
+> ⚠️ **Vibe-coded / Вайбкод.** This project was written almost entirely by an AI assistant (Claude) with a human only testing and steering it. It is not audited and may have bugs. Root tabs run a shell as the superuser — use at your own risk.
+> Проект почти целиком написан ИИ-ассистентом (Claude), человек его только тестировал и направлял. Код не аудирован, возможны ошибки. Вкладки root запускают оболочку от суперпользователя — на свой страх и риск.
 
-Нативное приложение-терминал для джейлбрейкнутых устройств на iOS 16. Оно открывает настоящую интерактивную shell-сессию через PTY и показывает её в xterm.js, встроенном в локальный WKWebView.
+A fast native terminal for jailbroken iOS 15–16 (rootless, tested on iPhone 8 / iOS 16.7.16, Dopamine).
+Быстрый нативный терминал для джейлбрейка iOS 15–16 (rootless).
 
-## Что уже есть в первой WIP-сборке
+- **Root tabs.** Long-press **+** → *New root tab* (or enable "New tabs as root" in settings). Root tabs are marked with a red **#**.
+- Own VT/xterm emulator in C (`Emulator/`, tested on Mac): 256 and true colours, alternate screen, scroll regions, mouse reporting, bracketed paste, wide characters and emoji, line drawing, reflow on rotation.
+- Core Text renderer: JetBrains Mono (bundled, OFL), SF Mono, Menlo; box-drawing and block characters are drawn pixel-exact.
+- Tabs, key bar (Esc, Tab, sticky Ctrl/Alt, arrows with auto-repeat, symbols, F1–F12), hardware keyboard shortcuts (⌘T, ⌘W, ⌘K, ⌘1…9, ⌘+/−), pinch to zoom, selection (long-press, double/triple tap), copy/paste.
+- 10 colour themes, cursor styles, scrollback size, haptic bell. Interface in English and Russian.
 
-- интерактивная shell-сессия с клавиатурным вводом, историей команд и сигналами `Ctrl+C` / `Ctrl+D`;
-- ANSI-цвета, управляющие последовательности, прокрутка до 10 000 строк и изменение размера PTY при повороте экрана;
-- кнопки Tab, Esc и стрелок для экранной клавиатуры;
-- перезапуск shell-сессии и значок в стиле терминала macOS Sequoia.
+## How root works
+`mtsh` (a small setuid-root helper in the app bundle) starts the shell on a pseudo-terminal. It refuses to give root to anyone but this app (it checks the parent process path), and drops privileges for normal tabs.
 
-Приложение ищет `zsh`, `bash` и `/bin/sh` в системных путях, доступных процессу. Сессия работает от пользователя `mobile` внутри app sandbox; rootless-бинарники за пределами контейнера не подключаются.
-
-## Совместимость
-
-- iOS 16.0 и новее;
-- arm64, rootless jailbreak;
-- тестовая цель: iPhone 8 с iOS 16.7.16 и Dopamine.
-
-Пакет пока помечен `Section: WIP` и работает в стандартном iOS sandbox. Поэтому shell может быть ограничен контейнером приложения, а некоторые системные пути или команды могут быть недоступны. Полный доступ к файловой системе устройства пока не включён. Команды выполняются от пользователя `mobile`.
-
-## Сборка
-
-Нужны macOS с Xcode, Theos, iOS SDK и `ldid`.
-
+## Build
+Xcode (iPhoneOS SDK), `ldid`, `dpkg`:
 ```sh
-make clean package FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless
+scripts/build.sh            # → packages/com.makr.terminal_<version>_iphoneos-arm64.deb
+scripts/build.sh debug      # adds debug notifications (screenshot, text input) — never ship this
+Tests/run.sh                # emulator tests on Mac (clang + sanitizers)
 ```
 
-Результат появится в `packages/`. GitHub Actions запускает такую же сборку на `main` и загружает `.deb` как артефакт `makr-terminal-deb`.
+## Icon
+The icon is the macOS Terminal icon (© Apple), reframed as a full-bleed square for iOS. It is not part of the open-source licence of this project; replace `Resources/Icon/*.png` to use your own.
 
-Для добавления готового пакета в APT-репозиторий положи `.deb` в `MakrSas/repo/debs/`, выполни `./update.sh` и закоммить обновлённые индексы. В поле `Section` пакета уже указано `WIP`.
-
-## Сторонний код
-
-Веб-терминал использует `@xterm/xterm` 6.0.0 и `@xterm/addon-fit` 0.11.0. Их MIT-лицензии приложены в `Resources/Web/vendor/`.
+## Licences
+JetBrains Mono — SIL OFL 1.1 (`licenses/`).

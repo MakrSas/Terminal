@@ -1,0 +1,8 @@
+# Terminal: настройки bash по умолчанию; свои ~/.bashrc и ~/.profile подключаются, если есть
+[ -f "$HOME/.profile" ] && . "$HOME/.profile"
+[ -f "$HOME/.bashrc" ] && . "$HOME/.bashrc"
+if [ -z "$PS1_SET_BY_USER" ] && ! [ -f "$HOME/.bashrc" ]; then
+  if [ "$(id -u)" = 0 ]; then PS1='\[\e[1;31m\]\u\[\e[0m\]@\h \[\e[34m\]\w\[\e[0m\] \[\e[1;31m\]#\[\e[0m\] '
+  else PS1='\[\e[1;32m\]\u\[\e[0m\]@\h \[\e[34m\]\w\[\e[0m\] \[\e[1;32m\]$\[\e[0m\] '; fi
+  alias ls='ls --color=auto'; alias ll='ls -lah'
+fi
