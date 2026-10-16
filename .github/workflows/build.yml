@@ -1,0 +1,31 @@
+name: Build rootless package
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: macos-14
+    timeout-minutes: 30
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Theos and iOS SDKs
+        uses: waruhachi/theos-action@97afc8c6c361c8b379ee64f42c8a0e41d725ce37 # v2.6.3
+
+      - name: Build rootless package
+        run: make clean package FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless
+
+      - name: Upload deb package
+        uses: actions/upload-artifact@v4
+        with:
+          name: makr-terminal-deb
+          path: .theos/packages/*.deb
+          if-no-files-found: error
+          retention-days: 14

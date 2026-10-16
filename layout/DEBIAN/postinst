@@ -1,0 +1,10 @@
+#!/bin/sh
+
+APP="/var/jb/Applications/MakrTerminal.app"
+if [ -x /var/jb/usr/bin/uicache ]; then
+	/var/jb/usr/bin/uicache -p "$APP" >/dev/null 2>&1 || true
+elif command -v uicache >/dev/null 2>&1; then
+	uicache -p "$APP" >/dev/null 2>&1 || true
+fi
+
+exit 0

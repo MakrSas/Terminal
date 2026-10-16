@@ -1,0 +1,10 @@
+Package: com.makr.terminal
+Name: Makr Terminal
+Version: 0.1.0
+Architecture: iphoneos-arm64
+Description: WIP xterm.js terminal prototype with a sandboxed shell for iOS 16.
+Maintainer: makr
+Author: makr
+Section: WIP
+Depends: firmware (>= 16.0)
+Icon: file:///var/jb/Applications/MakrTerminal.app/AppIcon60x60@2x.png

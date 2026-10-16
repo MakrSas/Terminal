@@ -1,0 +1,6 @@
+.theos/
+packages/
+*.deb
+*.dSYM/
+node_modules/
+DerivedData/
