@@ -29,7 +29,7 @@
 make clean package FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless
 ```
 
-Результат появится в `.theos/packages/`. GitHub Actions запускает такую же сборку на `main` и загружает `.deb` как артефакт `makr-terminal-deb`.
+Результат появится в `packages/`. GitHub Actions запускает такую же сборку на `main` и загружает `.deb` как артефакт `makr-terminal-deb`.
 
 Для добавления готового пакета в APT-репозиторий положи `.deb` в `MakrSas/repo/debs/`, выполни `./update.sh` и закоммить обновлённые индексы. В поле `Section` пакета уже указано `WIP`.
 
