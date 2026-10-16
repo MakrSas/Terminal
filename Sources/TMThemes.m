@@ -18,7 +18,7 @@
     dispatch_once(&once, ^{
 #define T(NM, BG, FG, CUR, SEL, LT, ...) [[TMTheme alloc] initName:NM bg:BG fg:FG cursor:CUR sel:SEL light:LT ansi:(const uint32_t[16]){__VA_ARGS__}]
         all = @[
-            T(@"Makr", 0x0b0f19, 0xd7dce8, 0x4da3ff, 0x233b66, NO,
+            T(@"Terminal", 0x0b0f19, 0xd7dce8, 0x4da3ff, 0x233b66, NO,
               0x1b2233, 0xff6b7a, 0x6bd68a, 0xf2cd6b, 0x4da3ff, 0xc08bff, 0x4fd8e0, 0xd7dce8,
               0x4a5470, 0xff8a96, 0x8ae8a6, 0xffe08a, 0x7dbcff, 0xd2a8ff, 0x7ae8ee, 0xffffff),
             T(@"Dracula", 0x282a36, 0xf8f8f2, 0xf8f8f2, 0x44475a, NO,

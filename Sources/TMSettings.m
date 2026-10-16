@@ -14,7 +14,7 @@
 - (instancetype)init {
     if ((self = [super init])) {
         _d = [NSUserDefaults standardUserDefaults];
-        [_d registerDefaults:@{@"theme": @"Makr", @"font": @"JetBrains Mono", @"fontSize": @13, @"cursorStyle": @0, @"cursorBlink": @YES,
+        [_d registerDefaults:@{@"theme": @"Terminal", @"font": @"JetBrains Mono", @"fontSize": @13, @"cursorStyle": @0, @"cursorBlink": @YES,
                                @"scrollback": @5000, @"shell": @"auto", @"startAsRoot": @NO, @"hapticBell": @YES, @"keepAwake": @NO}];
     }
     return self;
